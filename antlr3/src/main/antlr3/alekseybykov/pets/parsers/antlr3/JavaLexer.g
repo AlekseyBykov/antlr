@@ -1,7 +1,7 @@
 lexer grammar JavaLexer;
 
 @header {
-	package alekseybykov.pets.parsers.antlr3;
+    package alekseybykov.pets.parsers.antlr3;
 }
 
 PACKAGE
@@ -802,35 +802,35 @@ WS
     ;
 
 COMMENT
-         @init{
+        @init {
             boolean isJavaDoc = false;
         }
     :   '/*'
-            {
-                if((char)input.LA(1) == '*'){
-                    isJavaDoc = true;
-                }
+        {
+            if((char)input.LA(1) == '*') {
+                isJavaDoc = true;
             }
-        (options {greedy=false;} : . )*
+        }
+        (options {greedy = false;} : . )*
         '*/'
-            {
-                if(isJavaDoc==true){
-                    $channel=HIDDEN;
-                }else{
-                    skip();
-                }
+        {
+            if(isJavaDoc == true) {
+                $channel = HIDDEN;
+            } else {
+                skip();
             }
+        }
     ;
 
 LINE_COMMENT
     :   '//' ~('\n'|'\r')*  ('\r\n' | '\r' | '\n')
-            {
-                skip();
-            }
+        {
+            skip();
+        }
     |   '//' ~('\n'|'\r')*
-            {
-                skip();
-            }
+        {
+            skip();
+        }
     ;
 
 ANY

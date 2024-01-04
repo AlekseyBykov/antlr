@@ -1,19 +1,19 @@
 parser grammar JavaParser;
 
 options {
-	tokenVocab = JavaLexer;
-	backtrack = true;
-	memoize = true;
+    tokenVocab = JavaLexer;
+    backtrack = true;
+    memoize = true;
 }
 
 @header {
-	package alekseybykov.pets.parsers.antlr3;
+    package alekseybykov.pets.parsers.antlr3;
 
-	import alekseybykov.pets.parsers.models.JavaSource;
+    import alekseybykov.pets.parsers.models.JavaSource;
 }
 
 @members {
-	private JavaSource javaSource = new JavaSource();
+    private JavaSource javaSource = new JavaSource();
 
     public JavaSource getJavaSource() {
         return javaSource;
@@ -25,7 +25,7 @@ compilationUnit
         (importDeclaration)*
         (annotations)*
         (typeDeclaration)*
-		ANY*
+        ANY*
     ;
 
 packageDeclaration
@@ -35,7 +35,7 @@ packageDeclaration
 
 importDeclaration
     :   importKeyword fullyQualifiedImportName
-		SEMICOLON
+        SEMICOLON
     ;
 
 annotations
@@ -91,8 +91,8 @@ superClassName
 interfaceName
     :   interfaceNameToken = IDENTIFIER
         {
-			javaSource.getInterfaces().add(interfaceNameToken.getText());
-		}
+            javaSource.getInterfaces().add(interfaceNameToken.getText());
+        }
     ;
 
 interfaceNameList
@@ -110,12 +110,12 @@ normalInterfaceDeclaration
 fullyQualifiedPackageName returns [StringBuilder packageName]
     : packageStartPart = IDENTIFIER
         { packageName = new StringBuilder(packageStartPart.getText()); }
-	        (
-			dotToken = DOT
-			{ packageName.append(dotToken.getText()); }
-	        packagePart = IDENTIFIER
-	        { packageName.append(packagePart.getText()); }
-	        )* // loop
+            (
+            dotToken = DOT
+            { packageName.append(dotToken.getText()); }
+            packagePart = IDENTIFIER
+            { packageName.append(packagePart.getText()); }
+            )* // loop
         {
             javaSource.setPackageName(packageName.toString());
         }
@@ -123,19 +123,19 @@ fullyQualifiedPackageName returns [StringBuilder packageName]
 
 fullyQualifiedImportName returns [StringBuilder importName]
 	: importStartPart = IDENTIFIER
-		{ importName = new StringBuilder(importStartPart.getText()); }
-			(
-			dotToken = DOT
-			{ importName.append(dotToken.getText()); }
-			importPart = IDENTIFIER
-			{ importName.append(importPart.getText()); }
-			)* //loop
-			(
-			dotToken = DOT
-			{ importName.append(dotToken.getText()); }
-			asteriskToken = ASTERISK
-			{ importName.append(asteriskToken.getText()); }
-			)? // 0..1
+        { importName = new StringBuilder(importStartPart.getText()); }
+            (
+            dotToken = DOT
+            { importName.append(dotToken.getText()); }
+            importPart = IDENTIFIER
+            { importName.append(importPart.getText()); }
+            )* //loop
+            (
+            dotToken = DOT
+            { importName.append(dotToken.getText()); }
+            asteriskToken = ASTERISK
+            { importName.append(asteriskToken.getText()); }
+            )? // 0..1
         {
             javaSource.getImports().add(importName.toString());
         }
