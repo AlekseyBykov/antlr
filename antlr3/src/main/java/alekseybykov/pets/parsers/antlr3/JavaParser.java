@@ -2,15 +2,12 @@
 
 	package alekseybykov.pets.parsers.antlr3;
 
-	import alekseybykov.pets.parsers.models.JavaSource;
+	import alekseybykov.pets.parsers.model.JavaSource;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+
+	import java.util.HashMap;
 
 @SuppressWarnings("all")
 public class JavaParser extends Parser {

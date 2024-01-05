@@ -1,4 +1,4 @@
-package alekseybykov.pets.parsers.io;
+package alekseybykov.pets.parsers.helpers;
 
 import lombok.SneakyThrows;
 
@@ -10,11 +10,11 @@ import java.io.InputStreamReader;
  * @author bykov.alexey
  * @since 04.01.2024
  */
-public class FileSourceReader {
+public class SourceReader {
 
 	@SneakyThrows
-	public String readByClasspath(Class<?> clazz, String fileName) {
-		InputStream inputStream = clazz.getResourceAsStream(fileName);
+	public String readByClasspath(Class<?> clazz, String path) {
+		InputStream inputStream = clazz.getResourceAsStream(path);
 		return read(inputStream);
 	}
 

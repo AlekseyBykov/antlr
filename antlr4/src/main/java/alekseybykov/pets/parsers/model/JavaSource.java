@@ -1,4 +1,4 @@
-package alekseybykov.pets.parsers.models;
+package alekseybykov.pets.parsers.model;
 
 import lombok.Data;
 

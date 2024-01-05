@@ -1,10 +1,10 @@
-package alekseybykov.pets.parsers.java.fixtures;
+package alekseybykov.pets.parsers.parser.fixtures;
 
-import alekseybykov.pets.parsers.java.some_package.SomeClass;
+import alekseybykov.pets.parsers.parser.some_package.SomeClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import alekseybykov.pets.parsers.java.some_package.Superclass;
-import java.text.ParseException;
+import alekseybykov.pets.parsers.parser.some_package.Superclass;
+
 import java.util.*;
 
 /**
@@ -26,8 +26,3 @@ public class Class_Extends_Superclass extends Superclass {
 
 		...
 //SKIPPED
-
-public Superclass {
-
-}
-

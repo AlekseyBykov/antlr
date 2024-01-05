@@ -1,6 +1,6 @@
-package alekseybykov.pets.parsers.java;
+package alekseybykov.pets.parsers.parser;
 
-import alekseybykov.pets.parsers.models.JavaSource;
+import alekseybykov.pets.parsers.model.JavaSource;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -10,12 +10,12 @@ import static junit.framework.TestCase.assertNull;
  * @author bykov.alexey
  * @since 24.12.2023
  */
-public class ANTLR4JavaSourceParserTest {
+public class JavaSourceParserTest {
 
 	@Test
 	public void testClassRelationships() {
 
-		ANTLR4JavaSourceParser parser = new ANTLR4JavaSourceParser();
+		JavaSourceParser parser = new JavaSourceParser();
 
 		JavaSource javaSource = parser.parse("public class ClassA extends ClassB");
 		assertEquals("ClassA", javaSource.getClassName());

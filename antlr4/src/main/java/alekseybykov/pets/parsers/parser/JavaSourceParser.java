@@ -1,9 +1,9 @@
-package alekseybykov.pets.parsers.java;
+package alekseybykov.pets.parsers.parser;
 
 import alekseybykov.pets.parsers.antlr4.JavaBaseListener;
 import alekseybykov.pets.parsers.antlr4.JavaLexer;
 import alekseybykov.pets.parsers.antlr4.JavaParser;
-import alekseybykov.pets.parsers.models.JavaSource;
+import alekseybykov.pets.parsers.model.JavaSource;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  * @author bykov.alexey
  * @since 24.12.2023
  */
-public class ANTLR4JavaSourceParser {
+public class JavaSourceParser {
 
 	/**
 	 * The method parses the Java source text into objects.

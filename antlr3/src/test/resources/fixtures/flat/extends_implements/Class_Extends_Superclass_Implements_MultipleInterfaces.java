@@ -1,10 +1,8 @@
-package alekseybykov.pets.parsers.java.fixtures;
+package alekseybykov.pets.parsers.parser.fixtures;
 
-import alekseybykov.pets.parsers.java.some_package.SomeClass;
-import lombok.extern.slf4j.Slf4j;
+import alekseybykov.pets.parsers.parser.some_package.SomeClass;
 import org.apache.commons.lang.StringUtils;
 
-import java.text.ParseException;
 import java.util.*;
 
 /**

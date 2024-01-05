@@ -1,25 +1,54 @@
-package alekseybykov.pets.parsers.java;
+package alekseybykov.pets.parsers.parser;
 
-import alekseybykov.pets.parsers.models.JavaSource;
+import alekseybykov.pets.parsers.helpers.SourceReader;
+import alekseybykov.pets.parsers.model.JavaSource;
 import alekseybykov.pets.parsers.antlr3.JavaLexer;
 import alekseybykov.pets.parsers.antlr3.JavaParser;
+import lombok.val;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author bykov.alexey
  * @since 24.12.2023
  */
-public class ANTLR3JavaSourceParser {
+public class JavaSourceParser implements SourceParser {
+
+	private final SourceReader sourceReader = new SourceReader();
 
 	/**
-	 * The method parses Java source text into objects.
+	 * The method parses one Java source into objects.
 	 *
-	 * @param javaText - Java source code.
+	 * @param path - path to Java source code file.
 	 * @return - the object representation of the text.
 	 */
-	public JavaSource parse(String javaText) throws RecognitionException {
+	@Override
+	public JavaSource parse(String path) throws RecognitionException {
+		return parseByPath(path);
+	}
+
+	/**
+	 * The method parses a list of Java sources into objects.
+	 *
+	 * @param paths - list of Java source files.
+	 * @return - list of object representations.
+	 */
+	@Override
+	public List<JavaSource> parse(List<String> paths) throws RecognitionException {
+		List<JavaSource> result = new ArrayList<>();
+		for (String path : paths) {
+			result.add(parseByPath(path));
+		}
+		return result;
+	}
+
+	private JavaSource parseByPath(String path) throws RecognitionException {
+		val javaText = sourceReader.readByClasspath(JavaSourceParser.class, path);
 		CommonTokenStream javaTokens = tokenizeText(javaText);
 		return parse(javaTokens);
 	}

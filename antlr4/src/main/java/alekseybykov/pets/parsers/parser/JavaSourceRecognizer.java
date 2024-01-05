@@ -1,7 +1,7 @@
-package alekseybykov.pets.parsers.java;
+package alekseybykov.pets.parsers.parser;
 
 import alekseybykov.pets.parsers.antlr4.JavaParser;
-import alekseybykov.pets.parsers.models.JavaSource;
+import alekseybykov.pets.parsers.model.JavaSource;
 import alekseybykov.pets.parsers.antlr4.JavaBaseListener;
 import lombok.Getter;
 

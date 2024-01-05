@@ -1,4 +1,4 @@
-package alekseybykov.pets.parsers.models;
+package alekseybykov.pets.parsers.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -29,17 +29,19 @@ public class JavaSource {
 	@Getter(AccessLevel.NONE)
 	private String superclassFullName;
 
-	@Getter(AccessLevel.NONE)
-	private boolean leaf;
-
-	public boolean isLeaf() {
-		return StringUtils.isEmpty(superclassSimpleName);
-	}
-
 	public String getClassFullName() {
 		return packageName + "." + classSimpleName;
 	}
 
+	/**
+	 * The method evals the full name of the superclass
+	 * (includes a package prefix).
+	 *
+	 * If the superclass name is not specified in the import list,
+	 * then the superclass is in the same package as the subclass.
+	 *
+	 * @return - name with package prefix.
+	 */
 	public String getSuperclassFullName() {
 		if (superclassSimpleName != null) {
 			val name = evalByImports();
