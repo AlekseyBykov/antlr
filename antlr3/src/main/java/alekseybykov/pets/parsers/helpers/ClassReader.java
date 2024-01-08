@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * @author bykov.alexey
  * @since 04.01.2024
  */
-public class SourceReader {
+public class ClassReader {
 
 	@SneakyThrows
 	public String readByClasspath(Class<?> clazz, String path) {

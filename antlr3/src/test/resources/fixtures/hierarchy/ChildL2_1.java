@@ -1,17 +1,19 @@
 package alekseybykov.pets.parsers.parser.fixtures;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import alekseybykov.pets.parsers.parser.some_package.SomeClass;
+import alekseybykov.pets.parsers.parser.some_package.ChildL1_1;
 
 import java.util.*;
 
 /**
- * Test fixture for the parser test.
+ * Test fixture for the {@link JavaClassParser} test.
  *
  * @author bykov.alexey
  * @since 04.01.2024
  */
-public class Class_Implements_MultipleInterfaces implements Interface1,Interface2,   Interface3,  Interface4 {
+@Slf4j
+public class ChildL2_1 extends ChildL1_1 {
 
 	private static final String someStringField = "someStringValue";
 	private static final int someIntField = 1;
@@ -19,7 +21,7 @@ public class Class_Implements_MultipleInterfaces implements Interface1,Interface
 	private final Date someDateField = new Date();
 
 	@Override
-	protected String someMethod() {
+	protected String someAnotherMethod() {
 
 		...
 //SKIPPED

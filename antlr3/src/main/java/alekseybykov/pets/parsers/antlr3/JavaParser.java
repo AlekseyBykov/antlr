@@ -1,13 +1,16 @@
-// $ANTLR 3.5.2 alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g 2024-01-04 16:57:12
+// $ANTLR 3.5.2 alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g 2024-01-08 13:18:29
 
-	package alekseybykov.pets.parsers.antlr3;
+    package alekseybykov.pets.parsers.antlr3;
 
-	import alekseybykov.pets.parsers.model.JavaSource;
+    import alekseybykov.pets.parsers.model.JavaClass;
 
 
 import org.antlr.runtime.*;
-
-	import java.util.HashMap;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 @SuppressWarnings("all")
 public class JavaParser extends Parser {
@@ -73,10 +76,10 @@ public class JavaParser extends Parser {
 	@Override public String getGrammarFileName() { return "alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g"; }
 
 
-		private JavaSource javaSource = new JavaSource();
+	    private JavaClass javaClass = new JavaClass();
 
-	    public JavaSource getJavaSource() {
-	        return javaSource;
+	    public JavaClass getJavaClass() {
+	        return javaClass;
 	    }
 
 
@@ -102,7 +105,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:24:10: packageDeclaration
 					{
-					pushFollow(FOLLOW_packageDeclaration_in_compilationUnit60);
+					pushFollow(FOLLOW_packageDeclaration_in_compilationUnit69);
 					packageDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -124,7 +127,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:25:10: importDeclaration
 					{
-					pushFollow(FOLLOW_importDeclaration_in_compilationUnit73);
+					pushFollow(FOLLOW_importDeclaration_in_compilationUnit82);
 					importDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -149,7 +152,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:26:10: annotations
 					{
-					pushFollow(FOLLOW_annotations_in_compilationUnit86);
+					pushFollow(FOLLOW_annotations_in_compilationUnit95);
 					annotations();
 					state._fsp--;
 					if (state.failed) return;
@@ -174,7 +177,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:27:10: typeDeclaration
 					{
-					pushFollow(FOLLOW_typeDeclaration_in_compilationUnit99);
+					pushFollow(FOLLOW_typeDeclaration_in_compilationUnit108);
 					typeDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -186,7 +189,7 @@ public class JavaParser extends Parser {
 				}
 			}
 
-			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:28:3: ( ANY )*
+			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:28:9: ( ANY )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -197,9 +200,9 @@ public class JavaParser extends Parser {
 
 				switch (alt5) {
 				case 1 :
-					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:28:3: ANY
+					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:28:9: ANY
 					{
-					match(input,ANY,FOLLOW_ANY_in_compilationUnit105); if (state.failed) return;
+					match(input,ANY,FOLLOW_ANY_in_compilationUnit120); if (state.failed) return;
 					}
 					break;
 
@@ -236,15 +239,15 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:32:5: ( packageKeyword fullyQualifiedPackageName SEMICOLON )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:32:9: packageKeyword fullyQualifiedPackageName SEMICOLON
 			{
-			pushFollow(FOLLOW_packageKeyword_in_packageDeclaration125);
+			pushFollow(FOLLOW_packageKeyword_in_packageDeclaration140);
 			packageKeyword();
 			state._fsp--;
 			if (state.failed) return;
-			pushFollow(FOLLOW_fullyQualifiedPackageName_in_packageDeclaration127);
+			pushFollow(FOLLOW_fullyQualifiedPackageName_in_packageDeclaration142);
 			fullyQualifiedPackageName();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_packageDeclaration137); if (state.failed) return;
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_packageDeclaration152); if (state.failed) return;
 			}
 
 		}
@@ -273,15 +276,15 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:37:5: ( importKeyword fullyQualifiedImportName SEMICOLON )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:37:9: importKeyword fullyQualifiedImportName SEMICOLON
 			{
-			pushFollow(FOLLOW_importKeyword_in_importDeclaration156);
+			pushFollow(FOLLOW_importKeyword_in_importDeclaration171);
 			importKeyword();
 			state._fsp--;
 			if (state.failed) return;
-			pushFollow(FOLLOW_fullyQualifiedImportName_in_importDeclaration158);
+			pushFollow(FOLLOW_fullyQualifiedImportName_in_importDeclaration173);
 			fullyQualifiedImportName();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_importDeclaration162); if (state.failed) return;
+			match(input,SEMICOLON,FOLLOW_SEMICOLON_in_importDeclaration183); if (state.failed) return;
 			}
 
 		}
@@ -328,7 +331,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:42:10: ANNOTATION
 					{
-					match(input,ANNOTATION,FOLLOW_ANNOTATION_in_annotations182); if (state.failed) return;
+					match(input,ANNOTATION,FOLLOW_ANNOTATION_in_annotations203); if (state.failed) return;
 					}
 					break;
 
@@ -387,7 +390,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:46:9: classOrInterfaceDeclaration
 					{
-					pushFollow(FOLLOW_classOrInterfaceDeclaration_in_typeDeclaration203);
+					pushFollow(FOLLOW_classOrInterfaceDeclaration_in_typeDeclaration224);
 					classOrInterfaceDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -396,7 +399,7 @@ public class JavaParser extends Parser {
 				case 2 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:47:9: SEMICOLON
 					{
-					match(input,SEMICOLON,FOLLOW_SEMICOLON_in_typeDeclaration213); if (state.failed) return;
+					match(input,SEMICOLON,FOLLOW_SEMICOLON_in_typeDeclaration234); if (state.failed) return;
 					}
 					break;
 
@@ -431,7 +434,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:51:10: classDeclaration
 					{
-					pushFollow(FOLLOW_classDeclaration_in_classOrInterfaceDeclaration233);
+					pushFollow(FOLLOW_classDeclaration_in_classOrInterfaceDeclaration254);
 					classDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -440,7 +443,7 @@ public class JavaParser extends Parser {
 				case 2 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:52:9: interfaceDeclaration
 					{
-					pushFollow(FOLLOW_interfaceDeclaration_in_classOrInterfaceDeclaration243);
+					pushFollow(FOLLOW_interfaceDeclaration_in_classOrInterfaceDeclaration264);
 					interfaceDeclaration();
 					state._fsp--;
 					if (state.failed) return;
@@ -474,15 +477,15 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:56:5: ( accessModifier classKeyword className ( extendsKeyword superClassName )? ( implementsKeyword interfaceNameList )? )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:56:9: accessModifier classKeyword className ( extendsKeyword superClassName )? ( implementsKeyword interfaceNameList )?
 			{
-			pushFollow(FOLLOW_accessModifier_in_classDeclaration262);
+			pushFollow(FOLLOW_accessModifier_in_classDeclaration283);
 			accessModifier();
 			state._fsp--;
 			if (state.failed) return;
-			pushFollow(FOLLOW_classKeyword_in_classDeclaration264);
+			pushFollow(FOLLOW_classKeyword_in_classDeclaration285);
 			classKeyword();
 			state._fsp--;
 			if (state.failed) return;
-			pushFollow(FOLLOW_className_in_classDeclaration266);
+			pushFollow(FOLLOW_className_in_classDeclaration287);
 			className();
 			state._fsp--;
 			if (state.failed) return;
@@ -496,11 +499,11 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:57:10: extendsKeyword superClassName
 					{
-					pushFollow(FOLLOW_extendsKeyword_in_classDeclaration277);
+					pushFollow(FOLLOW_extendsKeyword_in_classDeclaration298);
 					extendsKeyword();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_superClassName_in_classDeclaration279);
+					pushFollow(FOLLOW_superClassName_in_classDeclaration300);
 					superClassName();
 					state._fsp--;
 					if (state.failed) return;
@@ -519,11 +522,11 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:58:10: implementsKeyword interfaceNameList
 					{
-					pushFollow(FOLLOW_implementsKeyword_in_classDeclaration292);
+					pushFollow(FOLLOW_implementsKeyword_in_classDeclaration313);
 					implementsKeyword();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_interfaceNameList_in_classDeclaration294);
+					pushFollow(FOLLOW_interfaceNameList_in_classDeclaration315);
 					interfaceNameList();
 					state._fsp--;
 					if (state.failed) return;
@@ -625,7 +628,7 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:63:9: publicKeyword
 					{
-					pushFollow(FOLLOW_publicKeyword_in_accessModifier321);
+					pushFollow(FOLLOW_publicKeyword_in_accessModifier342);
 					publicKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -634,7 +637,7 @@ public class JavaParser extends Parser {
 				case 2 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:64:9: protectedKeyword
 					{
-					pushFollow(FOLLOW_protectedKeyword_in_accessModifier331);
+					pushFollow(FOLLOW_protectedKeyword_in_accessModifier352);
 					protectedKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -643,7 +646,7 @@ public class JavaParser extends Parser {
 				case 3 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:65:9: privateKeyword
 					{
-					pushFollow(FOLLOW_privateKeyword_in_accessModifier341);
+					pushFollow(FOLLOW_privateKeyword_in_accessModifier362);
 					privateKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -652,7 +655,7 @@ public class JavaParser extends Parser {
 				case 4 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:66:9: staticKeyword
 					{
-					pushFollow(FOLLOW_staticKeyword_in_accessModifier351);
+					pushFollow(FOLLOW_staticKeyword_in_accessModifier372);
 					staticKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -661,7 +664,7 @@ public class JavaParser extends Parser {
 				case 5 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:67:9: abstractKeyword
 					{
-					pushFollow(FOLLOW_abstractKeyword_in_accessModifier361);
+					pushFollow(FOLLOW_abstractKeyword_in_accessModifier382);
 					abstractKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -670,7 +673,7 @@ public class JavaParser extends Parser {
 				case 6 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:68:9: finalKeyword
 					{
-					pushFollow(FOLLOW_finalKeyword_in_accessModifier371);
+					pushFollow(FOLLOW_finalKeyword_in_accessModifier392);
 					finalKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -679,7 +682,7 @@ public class JavaParser extends Parser {
 				case 7 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:69:9: nativeKeyword
 					{
-					pushFollow(FOLLOW_nativeKeyword_in_accessModifier381);
+					pushFollow(FOLLOW_nativeKeyword_in_accessModifier402);
 					nativeKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -688,7 +691,7 @@ public class JavaParser extends Parser {
 				case 8 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:70:9: synchronizedKeyword
 					{
-					pushFollow(FOLLOW_synchronizedKeyword_in_accessModifier391);
+					pushFollow(FOLLOW_synchronizedKeyword_in_accessModifier412);
 					synchronizedKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -697,7 +700,7 @@ public class JavaParser extends Parser {
 				case 9 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:71:9: transientKeyword
 					{
-					pushFollow(FOLLOW_transientKeyword_in_accessModifier401);
+					pushFollow(FOLLOW_transientKeyword_in_accessModifier422);
 					transientKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -706,7 +709,7 @@ public class JavaParser extends Parser {
 				case 10 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:72:9: volatileKeyword
 					{
-					pushFollow(FOLLOW_volatileKeyword_in_accessModifier411);
+					pushFollow(FOLLOW_volatileKeyword_in_accessModifier432);
 					volatileKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -715,7 +718,7 @@ public class JavaParser extends Parser {
 				case 11 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:73:9: strictfpKeyword
 					{
-					pushFollow(FOLLOW_strictfpKeyword_in_accessModifier421);
+					pushFollow(FOLLOW_strictfpKeyword_in_accessModifier442);
 					strictfpKeyword();
 					state._fsp--;
 					if (state.failed) return;
@@ -757,9 +760,9 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:78:5: (classNameToken= IDENTIFIER )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:78:9: classNameToken= IDENTIFIER
 			{
-			classNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_className451); if (state.failed) return;
+			classNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_className472); if (state.failed) return;
 			if ( state.backtracking==0 ) {
-			            javaSource.setClassSimpleName(classNameToken.getText());
+			            javaClass.setClassSimpleName(classNameToken.getText());
 			        }
 			}
 
@@ -791,9 +794,9 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:85:5: (superclassNameToken= IDENTIFIER )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:85:9: superclassNameToken= IDENTIFIER
 			{
-			superclassNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superClassName484); if (state.failed) return;
+			superclassNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_superClassName505); if (state.failed) return;
 			if ( state.backtracking==0 ) {
-			            javaSource.setSuperclassSimpleName(superclassNameToken.getText());
+			            javaClass.setSuperclassSimpleName(superclassNameToken.getText());
 			        }
 			}
 
@@ -825,10 +828,10 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:92:5: (interfaceNameToken= IDENTIFIER )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:92:9: interfaceNameToken= IDENTIFIER
 			{
-			interfaceNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_interfaceName517); if (state.failed) return;
+			interfaceNameToken=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_interfaceName538); if (state.failed) return;
 			if ( state.backtracking==0 ) {
-						javaSource.getInterfaces().add(interfaceNameToken.getText());
-					}
+			            javaClass.getInterfaces().add(interfaceNameToken.getText());
+			        }
 			}
 
 		}
@@ -857,7 +860,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:99:5: ( interfaceName ( COMMA interfaceName )* )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:99:9: interfaceName ( COMMA interfaceName )*
 			{
-			pushFollow(FOLLOW_interfaceName_in_interfaceNameList546);
+			pushFollow(FOLLOW_interfaceName_in_interfaceNameList567);
 			interfaceName();
 			state._fsp--;
 			if (state.failed) return;
@@ -874,8 +877,8 @@ public class JavaParser extends Parser {
 				case 1 :
 					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:99:24: COMMA interfaceName
 					{
-					match(input,COMMA,FOLLOW_COMMA_in_interfaceNameList549); if (state.failed) return;
-					pushFollow(FOLLOW_interfaceName_in_interfaceNameList551);
+					match(input,COMMA,FOLLOW_COMMA_in_interfaceNameList570); if (state.failed) return;
+					pushFollow(FOLLOW_interfaceName_in_interfaceNameList572);
 					interfaceName();
 					state._fsp--;
 					if (state.failed) return;
@@ -915,7 +918,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:103:5: ( normalInterfaceDeclaration )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:103:9: normalInterfaceDeclaration
 			{
-			pushFollow(FOLLOW_normalInterfaceDeclaration_in_interfaceDeclaration572);
+			pushFollow(FOLLOW_normalInterfaceDeclaration_in_interfaceDeclaration593);
 			normalInterfaceDeclaration();
 			state._fsp--;
 			if (state.failed) return;
@@ -947,15 +950,15 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:107:5: ( accessModifier interfaceKeyword IDENTIFIER )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:107:9: accessModifier interfaceKeyword IDENTIFIER
 			{
-			pushFollow(FOLLOW_accessModifier_in_normalInterfaceDeclaration591);
+			pushFollow(FOLLOW_accessModifier_in_normalInterfaceDeclaration612);
 			accessModifier();
 			state._fsp--;
 			if (state.failed) return;
-			pushFollow(FOLLOW_interfaceKeyword_in_normalInterfaceDeclaration593);
+			pushFollow(FOLLOW_interfaceKeyword_in_normalInterfaceDeclaration614);
 			interfaceKeyword();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_normalInterfaceDeclaration595); if (state.failed) return;
+			match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_normalInterfaceDeclaration616); if (state.failed) return;
 			}
 
 		}
@@ -990,9 +993,9 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:111:5: (packageStartPart= IDENTIFIER (dotToken= DOT packagePart= IDENTIFIER )* )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:111:7: packageStartPart= IDENTIFIER (dotToken= DOT packagePart= IDENTIFIER )*
 			{
-			packageStartPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName620); if (state.failed) return packageName;
+			packageStartPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName641); if (state.failed) return packageName;
 			if ( state.backtracking==0 ) { packageName = new StringBuilder(packageStartPart.getText()); }
-			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:113:10: (dotToken= DOT packagePart= IDENTIFIER )*
+			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:113:13: (dotToken= DOT packagePart= IDENTIFIER )*
 			loop13:
 			while (true) {
 				int alt13=2;
@@ -1003,11 +1006,11 @@ public class JavaParser extends Parser {
 
 				switch (alt13) {
 				case 1 :
-					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:114:4: dotToken= DOT packagePart= IDENTIFIER
+					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:114:13: dotToken= DOT packagePart= IDENTIFIER
 					{
-					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedPackageName650); if (state.failed) return packageName;
+					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedPackageName683); if (state.failed) return packageName;
 					if ( state.backtracking==0 ) { packageName.append(dotToken.getText()); }
-					packagePart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName670); if (state.failed) return packageName;
+					packagePart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName715); if (state.failed) return packageName;
 					if ( state.backtracking==0 ) { packageName.append(packagePart.getText()); }
 					}
 					break;
@@ -1018,7 +1021,7 @@ public class JavaParser extends Parser {
 			}
 
 			if ( state.backtracking==0 ) {
-			            javaSource.setPackageName(packageName.toString());
+			            javaClass.setPackageName(packageName.toString());
 			        }
 			}
 
@@ -1056,9 +1059,9 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:125:2: (importStartPart= IDENTIFIER (dotToken= DOT importPart= IDENTIFIER )* (dotToken= DOT asteriskToken= ASTERISK )? )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:125:4: importStartPart= IDENTIFIER (dotToken= DOT importPart= IDENTIFIER )* (dotToken= DOT asteriskToken= ASTERISK )?
 			{
-			importStartPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedImportName726); if (state.failed) return importName;
+			importStartPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedImportName777); if (state.failed) return importName;
 			if ( state.backtracking==0 ) { importName = new StringBuilder(importStartPart.getText()); }
-			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:127:4: (dotToken= DOT importPart= IDENTIFIER )*
+			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:127:13: (dotToken= DOT importPart= IDENTIFIER )*
 			loop14:
 			while (true) {
 				int alt14=2;
@@ -1073,11 +1076,11 @@ public class JavaParser extends Parser {
 
 				switch (alt14) {
 				case 1 :
-					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:128:4: dotToken= DOT importPart= IDENTIFIER
+					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:128:13: dotToken= DOT importPart= IDENTIFIER
 					{
-					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedImportName744); if (state.failed) return importName;
+					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedImportName819); if (state.failed) return importName;
 					if ( state.backtracking==0 ) { importName.append(dotToken.getText()); }
-					importPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedImportName758); if (state.failed) return importName;
+					importPart=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_fullyQualifiedImportName851); if (state.failed) return importName;
 					if ( state.backtracking==0 ) { importName.append(importPart.getText()); }
 					}
 					break;
@@ -1087,7 +1090,7 @@ public class JavaParser extends Parser {
 				}
 			}
 
-			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:133:4: (dotToken= DOT asteriskToken= ASTERISK )?
+			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:133:13: (dotToken= DOT asteriskToken= ASTERISK )?
 			int alt15=2;
 			int LA15_0 = input.LA(1);
 			if ( (LA15_0==DOT) ) {
@@ -1095,11 +1098,11 @@ public class JavaParser extends Parser {
 			}
 			switch (alt15) {
 				case 1 :
-					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:134:4: dotToken= DOT asteriskToken= ASTERISK
+					// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:134:13: dotToken= DOT asteriskToken= ASTERISK
 					{
-					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedImportName784); if (state.failed) return importName;
+					dotToken=(Token)match(input,DOT,FOLLOW_DOT_in_fullyQualifiedImportName913); if (state.failed) return importName;
 					if ( state.backtracking==0 ) { importName.append(dotToken.getText()); }
-					asteriskToken=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_fullyQualifiedImportName798); if (state.failed) return importName;
+					asteriskToken=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_fullyQualifiedImportName945); if (state.failed) return importName;
 					if ( state.backtracking==0 ) { importName.append(asteriskToken.getText()); }
 					}
 					break;
@@ -1107,7 +1110,7 @@ public class JavaParser extends Parser {
 			}
 
 			if ( state.backtracking==0 ) {
-			            javaSource.getImports().add(importName.toString());
+			            javaClass.getImports().add(importName.toString());
 			        }
 			}
 
@@ -1138,7 +1141,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:145:2: ( PACKAGE )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:145:4: PACKAGE
 			{
-			match(input,PACKAGE,FOLLOW_PACKAGE_in_packageKeyword831); if (state.failed) return;
+			match(input,PACKAGE,FOLLOW_PACKAGE_in_packageKeyword996); if (state.failed) return;
 			}
 
 		}
@@ -1167,7 +1170,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:149:2: ( IMPORT )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:149:4: IMPORT
 			{
-			match(input,IMPORT,FOLLOW_IMPORT_in_importKeyword842); if (state.failed) return;
+			match(input,IMPORT,FOLLOW_IMPORT_in_importKeyword1007); if (state.failed) return;
 			}
 
 		}
@@ -1196,7 +1199,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:153:2: ( STATIC )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:153:4: STATIC
 			{
-			match(input,STATIC,FOLLOW_STATIC_in_staticKeyword853); if (state.failed) return;
+			match(input,STATIC,FOLLOW_STATIC_in_staticKeyword1018); if (state.failed) return;
 			}
 
 		}
@@ -1225,7 +1228,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:157:2: ( CLASS )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:157:4: CLASS
 			{
-			match(input,CLASS,FOLLOW_CLASS_in_classKeyword864); if (state.failed) return;
+			match(input,CLASS,FOLLOW_CLASS_in_classKeyword1029); if (state.failed) return;
 			}
 
 		}
@@ -1254,7 +1257,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:161:2: ( EXTENDS )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:161:4: EXTENDS
 			{
-			match(input,EXTENDS,FOLLOW_EXTENDS_in_extendsKeyword875); if (state.failed) return;
+			match(input,EXTENDS,FOLLOW_EXTENDS_in_extendsKeyword1040); if (state.failed) return;
 			}
 
 		}
@@ -1283,7 +1286,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:165:2: ( IMPLEMENTS )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:165:4: IMPLEMENTS
 			{
-			match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_implementsKeyword886); if (state.failed) return;
+			match(input,IMPLEMENTS,FOLLOW_IMPLEMENTS_in_implementsKeyword1051); if (state.failed) return;
 			}
 
 		}
@@ -1312,7 +1315,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:169:2: ( INTERFACE )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:169:4: INTERFACE
 			{
-			match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceKeyword897); if (state.failed) return;
+			match(input,INTERFACE,FOLLOW_INTERFACE_in_interfaceKeyword1062); if (state.failed) return;
 			}
 
 		}
@@ -1341,7 +1344,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:173:2: ( PUBLIC )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:173:4: PUBLIC
 			{
-			match(input,PUBLIC,FOLLOW_PUBLIC_in_publicKeyword908); if (state.failed) return;
+			match(input,PUBLIC,FOLLOW_PUBLIC_in_publicKeyword1073); if (state.failed) return;
 			}
 
 		}
@@ -1370,7 +1373,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:177:2: ( PROTECTED )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:177:4: PROTECTED
 			{
-			match(input,PROTECTED,FOLLOW_PROTECTED_in_protectedKeyword919); if (state.failed) return;
+			match(input,PROTECTED,FOLLOW_PROTECTED_in_protectedKeyword1084); if (state.failed) return;
 			}
 
 		}
@@ -1399,7 +1402,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:181:2: ( PRIVATE )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:181:4: PRIVATE
 			{
-			match(input,PRIVATE,FOLLOW_PRIVATE_in_privateKeyword930); if (state.failed) return;
+			match(input,PRIVATE,FOLLOW_PRIVATE_in_privateKeyword1095); if (state.failed) return;
 			}
 
 		}
@@ -1428,7 +1431,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:185:2: ( ABSTRACT )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:185:4: ABSTRACT
 			{
-			match(input,ABSTRACT,FOLLOW_ABSTRACT_in_abstractKeyword941); if (state.failed) return;
+			match(input,ABSTRACT,FOLLOW_ABSTRACT_in_abstractKeyword1106); if (state.failed) return;
 			}
 
 		}
@@ -1457,7 +1460,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:189:2: ( FINAL )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:189:4: FINAL
 			{
-			match(input,FINAL,FOLLOW_FINAL_in_finalKeyword952); if (state.failed) return;
+			match(input,FINAL,FOLLOW_FINAL_in_finalKeyword1117); if (state.failed) return;
 			}
 
 		}
@@ -1486,7 +1489,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:193:2: ( NATIVE )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:193:4: NATIVE
 			{
-			match(input,NATIVE,FOLLOW_NATIVE_in_nativeKeyword963); if (state.failed) return;
+			match(input,NATIVE,FOLLOW_NATIVE_in_nativeKeyword1128); if (state.failed) return;
 			}
 
 		}
@@ -1515,7 +1518,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:197:2: ( SYNCHRONIZED )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:197:4: SYNCHRONIZED
 			{
-			match(input,SYNCHRONIZED,FOLLOW_SYNCHRONIZED_in_synchronizedKeyword974); if (state.failed) return;
+			match(input,SYNCHRONIZED,FOLLOW_SYNCHRONIZED_in_synchronizedKeyword1139); if (state.failed) return;
 			}
 
 		}
@@ -1544,7 +1547,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:201:2: ( TRANSIENT )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:201:4: TRANSIENT
 			{
-			match(input,TRANSIENT,FOLLOW_TRANSIENT_in_transientKeyword985); if (state.failed) return;
+			match(input,TRANSIENT,FOLLOW_TRANSIENT_in_transientKeyword1150); if (state.failed) return;
 			}
 
 		}
@@ -1573,7 +1576,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:205:2: ( VOLATILE )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:205:4: VOLATILE
 			{
-			match(input,VOLATILE,FOLLOW_VOLATILE_in_volatileKeyword996); if (state.failed) return;
+			match(input,VOLATILE,FOLLOW_VOLATILE_in_volatileKeyword1161); if (state.failed) return;
 			}
 
 		}
@@ -1602,7 +1605,7 @@ public class JavaParser extends Parser {
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:209:2: ( STRICTFP )
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:209:4: STRICTFP
 			{
-			match(input,STRICTFP,FOLLOW_STRICTFP_in_strictfpKeyword1007); if (state.failed) return;
+			match(input,STRICTFP,FOLLOW_STRICTFP_in_strictfpKeyword1172); if (state.failed) return;
 			}
 
 		}
@@ -1623,7 +1626,7 @@ public class JavaParser extends Parser {
 		// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:42:10: ( ANNOTATION )
 		// alekseybykov\\pets\\parsers\\antlr3\\JavaParser.g:42:10: ANNOTATION
 		{
-		match(input,ANNOTATION,FOLLOW_ANNOTATION_in_synpred6_JavaParser182); if (state.failed) return;
+		match(input,ANNOTATION,FOLLOW_ANNOTATION_in_synpred6_JavaParser203); if (state.failed) return;
 		}
 
 	}
@@ -1724,74 +1727,74 @@ public class JavaParser extends Parser {
 		}
 	}
 
-	public static final BitSet FOLLOW_packageDeclaration_in_compilationUnit60 = new BitSet(new long[]{0x00000001FF4642D2L});
-	public static final BitSet FOLLOW_importDeclaration_in_compilationUnit73 = new BitSet(new long[]{0x00000001FF4642D2L});
-	public static final BitSet FOLLOW_annotations_in_compilationUnit86 = new BitSet(new long[]{0x00000001FF4442D2L});
-	public static final BitSet FOLLOW_typeDeclaration_in_compilationUnit99 = new BitSet(new long[]{0x00000001FF444292L});
-	public static final BitSet FOLLOW_ANY_in_compilationUnit105 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_packageKeyword_in_packageDeclaration125 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_fullyQualifiedPackageName_in_packageDeclaration127 = new BitSet(new long[]{0x0000000008000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_packageDeclaration137 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_importKeyword_in_importDeclaration156 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_fullyQualifiedImportName_in_importDeclaration158 = new BitSet(new long[]{0x0000000008000000L});
-	public static final BitSet FOLLOW_SEMICOLON_in_importDeclaration162 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ANNOTATION_in_annotations182 = new BitSet(new long[]{0x0000000000000042L});
-	public static final BitSet FOLLOW_classOrInterfaceDeclaration_in_typeDeclaration203 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SEMICOLON_in_typeDeclaration213 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_classDeclaration_in_classOrInterfaceDeclaration233 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_interfaceDeclaration_in_classOrInterfaceDeclaration243 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_accessModifier_in_classDeclaration262 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_classKeyword_in_classDeclaration264 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_className_in_classDeclaration266 = new BitSet(new long[]{0x0000000000012002L});
-	public static final BitSet FOLLOW_extendsKeyword_in_classDeclaration277 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_superClassName_in_classDeclaration279 = new BitSet(new long[]{0x0000000000010002L});
-	public static final BitSet FOLLOW_implementsKeyword_in_classDeclaration292 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_interfaceNameList_in_classDeclaration294 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_publicKeyword_in_accessModifier321 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_protectedKeyword_in_accessModifier331 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_privateKeyword_in_accessModifier341 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_staticKeyword_in_accessModifier351 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_abstractKeyword_in_accessModifier361 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_finalKeyword_in_accessModifier371 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_nativeKeyword_in_accessModifier381 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_synchronizedKeyword_in_accessModifier391 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_transientKeyword_in_accessModifier401 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_volatileKeyword_in_accessModifier411 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_strictfpKeyword_in_accessModifier421 = new BitSet(new long[]{0x00000001F7404012L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_className451 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_superClassName484 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_interfaceName517 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_interfaceName_in_interfaceNameList546 = new BitSet(new long[]{0x0000000000000402L});
-	public static final BitSet FOLLOW_COMMA_in_interfaceNameList549 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_interfaceName_in_interfaceNameList551 = new BitSet(new long[]{0x0000000000000402L});
-	public static final BitSet FOLLOW_normalInterfaceDeclaration_in_interfaceDeclaration572 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_accessModifier_in_normalInterfaceDeclaration591 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_interfaceKeyword_in_normalInterfaceDeclaration593 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_normalInterfaceDeclaration595 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName620 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_DOT_in_fullyQualifiedPackageName650 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName670 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedImportName726 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_DOT_in_fullyQualifiedImportName744 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedImportName758 = new BitSet(new long[]{0x0000000000001002L});
-	public static final BitSet FOLLOW_DOT_in_fullyQualifiedImportName784 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_ASTERISK_in_fullyQualifiedImportName798 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PACKAGE_in_packageKeyword831 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IMPORT_in_importKeyword842 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STATIC_in_staticKeyword853 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_CLASS_in_classKeyword864 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_EXTENDS_in_extendsKeyword875 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_IMPLEMENTS_in_implementsKeyword886 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INTERFACE_in_interfaceKeyword897 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PUBLIC_in_publicKeyword908 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PROTECTED_in_protectedKeyword919 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PRIVATE_in_privateKeyword930 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ABSTRACT_in_abstractKeyword941 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FINAL_in_finalKeyword952 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_NATIVE_in_nativeKeyword963 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_SYNCHRONIZED_in_synchronizedKeyword974 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TRANSIENT_in_transientKeyword985 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_VOLATILE_in_volatileKeyword996 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_STRICTFP_in_strictfpKeyword1007 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ANNOTATION_in_synpred6_JavaParser182 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_packageDeclaration_in_compilationUnit69 = new BitSet(new long[]{0x00000001FF4642D2L});
+	public static final BitSet FOLLOW_importDeclaration_in_compilationUnit82 = new BitSet(new long[]{0x00000001FF4642D2L});
+	public static final BitSet FOLLOW_annotations_in_compilationUnit95 = new BitSet(new long[]{0x00000001FF4442D2L});
+	public static final BitSet FOLLOW_typeDeclaration_in_compilationUnit108 = new BitSet(new long[]{0x00000001FF444292L});
+	public static final BitSet FOLLOW_ANY_in_compilationUnit120 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_packageKeyword_in_packageDeclaration140 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_fullyQualifiedPackageName_in_packageDeclaration142 = new BitSet(new long[]{0x0000000008000000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_packageDeclaration152 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_importKeyword_in_importDeclaration171 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_fullyQualifiedImportName_in_importDeclaration173 = new BitSet(new long[]{0x0000000008000000L});
+	public static final BitSet FOLLOW_SEMICOLON_in_importDeclaration183 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ANNOTATION_in_annotations203 = new BitSet(new long[]{0x0000000000000042L});
+	public static final BitSet FOLLOW_classOrInterfaceDeclaration_in_typeDeclaration224 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SEMICOLON_in_typeDeclaration234 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_classDeclaration_in_classOrInterfaceDeclaration254 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_interfaceDeclaration_in_classOrInterfaceDeclaration264 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_accessModifier_in_classDeclaration283 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_classKeyword_in_classDeclaration285 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_className_in_classDeclaration287 = new BitSet(new long[]{0x0000000000012002L});
+	public static final BitSet FOLLOW_extendsKeyword_in_classDeclaration298 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_superClassName_in_classDeclaration300 = new BitSet(new long[]{0x0000000000010002L});
+	public static final BitSet FOLLOW_implementsKeyword_in_classDeclaration313 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_interfaceNameList_in_classDeclaration315 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_publicKeyword_in_accessModifier342 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_protectedKeyword_in_accessModifier352 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_privateKeyword_in_accessModifier362 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_staticKeyword_in_accessModifier372 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_abstractKeyword_in_accessModifier382 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_finalKeyword_in_accessModifier392 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_nativeKeyword_in_accessModifier402 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_synchronizedKeyword_in_accessModifier412 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_transientKeyword_in_accessModifier422 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_volatileKeyword_in_accessModifier432 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_strictfpKeyword_in_accessModifier442 = new BitSet(new long[]{0x00000001F7404012L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_className472 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_superClassName505 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_interfaceName538 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_interfaceName_in_interfaceNameList567 = new BitSet(new long[]{0x0000000000000402L});
+	public static final BitSet FOLLOW_COMMA_in_interfaceNameList570 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_interfaceName_in_interfaceNameList572 = new BitSet(new long[]{0x0000000000000402L});
+	public static final BitSet FOLLOW_normalInterfaceDeclaration_in_interfaceDeclaration593 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_accessModifier_in_normalInterfaceDeclaration612 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_interfaceKeyword_in_normalInterfaceDeclaration614 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_normalInterfaceDeclaration616 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName641 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_DOT_in_fullyQualifiedPackageName683 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedPackageName715 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedImportName777 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_DOT_in_fullyQualifiedImportName819 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_IDENTIFIER_in_fullyQualifiedImportName851 = new BitSet(new long[]{0x0000000000001002L});
+	public static final BitSet FOLLOW_DOT_in_fullyQualifiedImportName913 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_ASTERISK_in_fullyQualifiedImportName945 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PACKAGE_in_packageKeyword996 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IMPORT_in_importKeyword1007 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STATIC_in_staticKeyword1018 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_CLASS_in_classKeyword1029 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_EXTENDS_in_extendsKeyword1040 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_IMPLEMENTS_in_implementsKeyword1051 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INTERFACE_in_interfaceKeyword1062 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PUBLIC_in_publicKeyword1073 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PROTECTED_in_protectedKeyword1084 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PRIVATE_in_privateKeyword1095 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ABSTRACT_in_abstractKeyword1106 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FINAL_in_finalKeyword1117 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_NATIVE_in_nativeKeyword1128 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_SYNCHRONIZED_in_synchronizedKeyword1139 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TRANSIENT_in_transientKeyword1150 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_VOLATILE_in_volatileKeyword1161 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_STRICTFP_in_strictfpKeyword1172 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ANNOTATION_in_synpred6_JavaParser203 = new BitSet(new long[]{0x0000000000000002L});
 }

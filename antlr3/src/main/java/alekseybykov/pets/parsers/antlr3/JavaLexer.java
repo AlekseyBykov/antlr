@@ -1,6 +1,6 @@
-// $ANTLR 3.5.2 alekseybykov\\pets\\parsers\\antlr3\\JavaLexer.g 2024-01-04 16:57:11
+// $ANTLR 3.5.2 alekseybykov\\pets\\parsers\\antlr3\\JavaLexer.g 2024-01-08 13:18:28
 
-	package alekseybykov.pets.parsers.antlr3;
+    package alekseybykov.pets.parsers.antlr3;
 
 
 import org.antlr.runtime.*;
@@ -6821,10 +6821,10 @@ public class JavaLexer extends Lexer {
 			match("/*"); 
 
 
-			                if((char)input.LA(1) == '*'){
-			                    isJavaDoc = true;
-			                }
-			            
+			            if((char)input.LA(1) == '*') {
+			                isJavaDoc = true;
+			            }
+			        
 			// alekseybykov\\pets\\parsers\\antlr3\\JavaLexer.g:814:9: ( options {greedy=false; } : . )*
 			loop4:
 			while (true) {
@@ -6846,7 +6846,7 @@ public class JavaLexer extends Lexer {
 
 				switch (alt4) {
 				case 1 :
-					// alekseybykov\\pets\\parsers\\antlr3\\JavaLexer.g:814:36: .
+					// alekseybykov\\pets\\parsers\\antlr3\\JavaLexer.g:814:38: .
 					{
 					matchAny(); 
 					}
@@ -6860,12 +6860,12 @@ public class JavaLexer extends Lexer {
 			match("*/"); 
 
 
-			                if(isJavaDoc==true){
-			                    _channel=HIDDEN;
-			                }else{
-			                    skip();
-			                }
-			            
+			            if(isJavaDoc == true) {
+			                _channel = HIDDEN;
+			            } else {
+			                skip();
+			            }
+			        
 			}
 
 			state.type = _type;
@@ -6968,8 +6968,8 @@ public class JavaLexer extends Lexer {
 					}
 
 
-					                skip();
-					            
+					            skip();
+					        
 					}
 					break;
 				case 2 :
@@ -7007,8 +7007,8 @@ public class JavaLexer extends Lexer {
 					}
 
 
-					                skip();
-					            
+					            skip();
+					        
 					}
 					break;
 

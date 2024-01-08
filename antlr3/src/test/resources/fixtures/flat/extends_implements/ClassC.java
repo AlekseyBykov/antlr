@@ -6,13 +6,13 @@ import org.apache.commons.lang.StringUtils;
 import java.util.*;
 
 /**
- * Test fixture for the parser test.
+ * Test fixture for the {@link JavaClassParser} test.
  *
  * @author bykov.alexey
  * @since 04.01.2024
  */
-public class Class_Extends_Superclass_Implements_MultipleInterfaces extends Superclass implements Interface1,Interface2,
-                                                                                                  Interface3,  Interface4 {
+public class ClassC extends Superclass implements Interface1,Interface2,
+                                                  Interface3,  Interface4 {
 	private static final String someStringField = "someStringValue";
 	private static final int someIntField = 1;
 

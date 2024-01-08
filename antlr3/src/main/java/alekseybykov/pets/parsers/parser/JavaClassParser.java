@@ -1,7 +1,7 @@
 package alekseybykov.pets.parsers.parser;
 
-import alekseybykov.pets.parsers.helpers.SourceReader;
-import alekseybykov.pets.parsers.model.JavaSource;
+import alekseybykov.pets.parsers.helpers.ClassReader;
+import alekseybykov.pets.parsers.model.JavaClass;
 import alekseybykov.pets.parsers.antlr3.JavaLexer;
 import alekseybykov.pets.parsers.antlr3.JavaParser;
 import lombok.val;
@@ -9,7 +9,6 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +16,9 @@ import java.util.List;
  * @author bykov.alexey
  * @since 24.12.2023
  */
-public class JavaSourceParser implements SourceParser {
+public class JavaClassParser implements ClassParser {
 
-	private final SourceReader sourceReader = new SourceReader();
+	private final ClassReader classReader = new ClassReader();
 
 	/**
 	 * The method parses one Java source into objects.
@@ -28,7 +27,7 @@ public class JavaSourceParser implements SourceParser {
 	 * @return - the object representation of the text.
 	 */
 	@Override
-	public JavaSource parse(String path) throws RecognitionException {
+	public JavaClass parse(String path) throws RecognitionException {
 		return parseByPath(path);
 	}
 
@@ -39,16 +38,16 @@ public class JavaSourceParser implements SourceParser {
 	 * @return - list of object representations.
 	 */
 	@Override
-	public List<JavaSource> parse(List<String> paths) throws RecognitionException {
-		List<JavaSource> result = new ArrayList<>();
+	public List<JavaClass> parse(List<String> paths) throws RecognitionException {
+		List<JavaClass> result = new ArrayList<>();
 		for (String path : paths) {
 			result.add(parseByPath(path));
 		}
 		return result;
 	}
 
-	private JavaSource parseByPath(String path) throws RecognitionException {
-		val javaText = sourceReader.readByClasspath(JavaSourceParser.class, path);
+	private JavaClass parseByPath(String path) throws RecognitionException {
+		val javaText = classReader.readByClasspath(JavaClassParser.class, path);
 		CommonTokenStream javaTokens = tokenizeText(javaText);
 		return parse(javaTokens);
 	}
@@ -67,9 +66,9 @@ public class JavaSourceParser implements SourceParser {
 		return new CommonTokenStream(lexer);
 	}
 
-	private JavaSource parse(CommonTokenStream javaTokens) throws RecognitionException {
+	private JavaClass parse(CommonTokenStream javaTokens) throws RecognitionException {
 		JavaParser parser = new JavaParser(javaTokens);
 		parser.compilationUnit();
-		return parser.getJavaSource();
+		return parser.getJavaClass();
 	}
 }

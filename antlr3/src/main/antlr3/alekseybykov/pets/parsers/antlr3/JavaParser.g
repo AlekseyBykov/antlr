@@ -9,14 +9,14 @@ options {
 @header {
     package alekseybykov.pets.parsers.antlr3;
 
-    import alekseybykov.pets.parsers.models.JavaSource;
+    import alekseybykov.pets.parsers.model.JavaClass;
 }
 
 @members {
-    private JavaSource javaSource = new JavaSource();
+    private JavaClass javaClass = new JavaClass();
 
-    public JavaSource getJavaSource() {
-        return javaSource;
+    public JavaClass getJavaClass() {
+        return javaClass;
     }
 }
 
@@ -77,21 +77,21 @@ accessModifier
 className
     :   classNameToken = IDENTIFIER
         {
-            javaSource.setClassSimpleName(classNameToken.getText());
+            javaClass.setClassSimpleName(classNameToken.getText());
         }
     ;
 
 superClassName
     :   superclassNameToken = IDENTIFIER
         {
-            javaSource.setSuperclassSimpleName(superclassNameToken.getText());
+            javaClass.setSuperclassSimpleName(superclassNameToken.getText());
         }
     ;
 
 interfaceName
     :   interfaceNameToken = IDENTIFIER
         {
-            javaSource.getInterfaces().add(interfaceNameToken.getText());
+            javaClass.getInterfaces().add(interfaceNameToken.getText());
         }
     ;
 
@@ -117,7 +117,7 @@ fullyQualifiedPackageName returns [StringBuilder packageName]
             { packageName.append(packagePart.getText()); }
             )* // loop
         {
-            javaSource.setPackageName(packageName.toString());
+            javaClass.setPackageName(packageName.toString());
         }
     ;
 
@@ -137,7 +137,7 @@ fullyQualifiedImportName returns [StringBuilder importName]
             { importName.append(asteriskToken.getText()); }
             )? // 0..1
         {
-            javaSource.getImports().add(importName.toString());
+            javaClass.getImports().add(importName.toString());
         }
 	;
 

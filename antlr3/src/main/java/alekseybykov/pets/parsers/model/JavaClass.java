@@ -14,7 +14,7 @@ import java.util.List;
  * @since 24.12.2023
  */
 @Data
-public class JavaSource {
+public class JavaClass {
 
 	private String packageName;
 
@@ -50,6 +50,10 @@ public class JavaSource {
 			       : name;
 		}
 		return null;
+	}
+
+	public boolean hasParent() {
+		return !StringUtils.isEmpty(superclassSimpleName);
 	}
 
 	private String evalByImports() {
