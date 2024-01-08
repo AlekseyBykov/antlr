@@ -36,40 +36,62 @@ public class HierarchyModeParserTest {
 		));
 
 		JavaClassAnalyzer analyzer = new JavaClassAnalyzer();
-		List<JavaClass> subclasses = analyzer.findSubclassesForLevel(parent, classes, DeepLevel.L2);
+		List<JavaClass> subclasses = analyzer.findSubclassesForLevel(parent, classes, DeepLevel.L1);
 
 		assertThat(subclasses.size(), is(2));
 
+		// All the L1 subclasses for parent class.
 		assertThat(subclasses, containsInAnyOrder(
 				hasProperty("classSimpleName", is("ChildL1_1")),
 				hasProperty("classSimpleName", is("ChildL1_2"))
 		));
+	}
 
+	@Test
+	public void testDeepLevel2() throws RecognitionException {
+		JavaClass parent = classParser.parse("/fixtures/hierarchy/Parent.java");
+
+		List<JavaClass> classes = classParser.parse(Arrays.asList(
+				"/fixtures/hierarchy/ChildL1_1.java",
+				"/fixtures/hierarchy/ChildL1_2.java",
+				"/fixtures/hierarchy/ChildL2_1.java",
+				"/fixtures/hierarchy/ChildL2_2.java",
+				"/fixtures/hierarchy/ChildL3.java"
+		));
+
+		JavaClassAnalyzer analyzer = new JavaClassAnalyzer();
+		List<JavaClass> subclasses = analyzer.findSubclassesForLevel(parent, classes, DeepLevel.L2);
+
+		assertThat(subclasses.size(), is(4));
+
+		// All the L2 subclasses for parent class.
 		assertThat(subclasses, containsInAnyOrder(
-				hasProperty("superclassSimpleName", is("Parent")),
-				hasProperty("superclassSimpleName", is("Parent"))
+				hasProperty("classSimpleName", is("ChildL1_1")),
+				hasProperty("classSimpleName", is("ChildL1_2")),
+				hasProperty("classSimpleName", is("ChildL2_1")),
+				hasProperty("classSimpleName", is("ChildL2_2"))
 		));
 
 		assertThat(
-			subclasses,
-			hasItem(allOf(
-					Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL1_1")),
-					Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_1")),
-					Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
-					Matchers.<JavaClass>hasProperty("superclassSimpleName", is("Parent")),
-					Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.some_package.Parent"))
-			))
+				subclasses,
+				hasItem(allOf(
+						Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL1_1")),
+						Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_1")),
+						Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
+						Matchers.<JavaClass>hasProperty("superclassSimpleName", is("Parent")),
+						Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.fixtures.Parent"))
+				))
 		);
 
 		assertThat(
-			subclasses,
-			hasItem(allOf(
-					Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL1_2")),
-					Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_2")),
-					Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
-					Matchers.<JavaClass>hasProperty("superclassSimpleName", is("Parent")),
-					Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.some_package.Parent"))
-			))
+				subclasses,
+				hasItem(allOf(
+						Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL1_2")),
+						Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_2")),
+						Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
+						Matchers.<JavaClass>hasProperty("superclassSimpleName", is("Parent")),
+						Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.fixtures.Parent"))
+				))
 		);
 	}
 }

@@ -5,6 +5,8 @@ import alekseybykov.pets.parsers.model.JavaClass;
 import java.util.List;
 
 /**
+ * The class performs a search at the L1 level.
+ *
  * @author bykov.alexey
  * @since 08.01.2024
  */

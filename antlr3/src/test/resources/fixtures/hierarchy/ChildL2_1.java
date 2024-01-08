@@ -2,7 +2,7 @@ package alekseybykov.pets.parsers.parser.fixtures;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import alekseybykov.pets.parsers.parser.some_package.ChildL1_1;
+import alekseybykov.pets.parsers.parser.fixtures.ChildL1_1;
 
 import java.util.*;
 

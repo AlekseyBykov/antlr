@@ -1,6 +1,8 @@
 package alekseybykov.pets.parsers.analyzer.consts;
 
 /**
+ * Subclasses search depth.
+ *
  * @author bykov.alexey
  * @since 08.01.2024
  */

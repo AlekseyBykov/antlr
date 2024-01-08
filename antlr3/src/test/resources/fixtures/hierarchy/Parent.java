@@ -1,4 +1,4 @@
-package alekseybykov.pets.parsers.parser.some_package;
+package alekseybykov.pets.parsers.parser.fixtures;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

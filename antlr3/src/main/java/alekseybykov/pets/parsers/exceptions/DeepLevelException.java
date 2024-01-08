@@ -7,7 +7,7 @@ package alekseybykov.pets.parsers.exceptions;
 public class DeepLevelException extends RuntimeException {
 
 	public static DeepLevelException unknownLevel() {
-		return new DeepLevelException("Указан не поддерживаемый уровень.");
+		return new DeepLevelException("Unknown deep level.");
 	}
 
 	private DeepLevelException(String message) {
