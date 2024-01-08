@@ -1,8 +1,10 @@
-package alekseybykov.pets.parsers.parser;
+package alekseybykov.pets.parsers.parser.hierarchical;
 
 import alekseybykov.pets.parsers.analyzer.consts.DeepLevel;
 import alekseybykov.pets.parsers.analyzer.JavaClassAnalyzer;
 import alekseybykov.pets.parsers.model.JavaClass;
+import alekseybykov.pets.parsers.parser.ClassParser;
+import alekseybykov.pets.parsers.parser.JavaClassParser;
 import org.antlr.runtime.RecognitionException;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -23,6 +25,21 @@ public class HierarchyModeParserTest {
 
 	private final ClassParser classParser = new JavaClassParser();
 
+	/**
+	 * Here we have the following subtree:
+	 *
+	 *                (Parent)            - Level0
+	 *                   / \
+	 *                 /    \
+	 *         (ChildL1_1)  (ChildL1_2)   - Level1
+	 *             /           \
+	 *           /              \
+	 *      (ChildL2_1)      (ChildL2_2)  - Level2
+	 *         /
+	 *     (ChildL3)                      - Level3
+	 *
+	 * Will be found at L1 level: ChildL1_1, ChildL1_2.
+	 */
 	@Test
 	public void testDeepLevel1() throws RecognitionException {
 		JavaClass parent = classParser.parse("/fixtures/hierarchy/Parent.java");
@@ -47,9 +64,24 @@ public class HierarchyModeParserTest {
 		));
 	}
 
+	/**
+	 * Here we have the following subtree:
+	 *
+	 *                (Parent)            - Level0
+	 *                   / \
+	 *                 /    \
+	 *         (ChildL1_1)  (ChildL1_2)   - Level1
+	 *             /           \
+	 *           /              \
+	 *      (ChildL2_1)      (ChildL2_2)  - Level2
+	 *         /
+	 *     (ChildL3)                      - Level3
+	 *
+	 * Will be found at L2 level: ChildL1_1, ChildL1_2, ChildL2_1, ChildL2_2.
+	 */
 	@Test
 	public void testDeepLevel2() throws RecognitionException {
-		JavaClass parent = classParser.parse("/fixtures/hierarchy/Parent.java");
+		JavaClass parent = classParser.parse("/fixtures/hierarchy/ChildL1_1.java");
 
 		List<JavaClass> classes = classParser.parse(Arrays.asList(
 				"/fixtures/hierarchy/ChildL1_1.java",
@@ -91,6 +123,30 @@ public class HierarchyModeParserTest {
 						Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
 						Matchers.<JavaClass>hasProperty("superclassSimpleName", is("Parent")),
 						Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.fixtures.Parent"))
+				))
+		);
+
+		assertThat(
+				subclasses,
+				hasItem(allOf(
+						Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL2_1")),
+						Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL2_1")),
+						Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
+						// Note that the superclass here is ChildL1_1.
+						Matchers.<JavaClass>hasProperty("superclassSimpleName", is("ChildL1_1")),
+						Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_1"))
+				))
+		);
+
+		assertThat(
+				subclasses,
+				hasItem(allOf(
+						Matchers.<JavaClass>hasProperty("classSimpleName", is("ChildL2_2")),
+						Matchers.<JavaClass>hasProperty("classFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL2_2")),
+						Matchers.<JavaClass>hasProperty("packageName", is("alekseybykov.pets.parsers.parser.fixtures")),
+						// Note that the superclass here is ChildL2_2.
+						Matchers.<JavaClass>hasProperty("superclassSimpleName", is("ChildL1_2")),
+						Matchers.<JavaClass>hasProperty("superclassFullName", is("alekseybykov.pets.parsers.parser.fixtures.ChildL1_2"))
 				))
 		);
 	}

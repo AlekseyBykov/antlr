@@ -1,8 +1,10 @@
-package alekseybykov.pets.parsers.parser;
+package alekseybykov.pets.parsers.parser.flat;
 
 import alekseybykov.pets.parsers.analyzer.JavaClassAnalyzer;
 import alekseybykov.pets.parsers.analyzer.consts.DeepLevel;
 import alekseybykov.pets.parsers.model.JavaClass;
+import alekseybykov.pets.parsers.parser.ClassParser;
+import alekseybykov.pets.parsers.parser.JavaClassParser;
 import org.antlr.runtime.RecognitionException;
 import org.junit.Test;
 
